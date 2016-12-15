@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <node pkg="stage_ros" type="stageros" name="stageros" output="screen" required="true" args="-d $(find pf_localization)/../config/map.world"/>
+
+  <node pkg="map_server" type="map_server" name="map_server" output="screen" required="true" args="$(find pf_localization)/../config/map.yaml"/>
+
+  <node pkg="pf_localization" type="map_frame.py" name="map_frame" output="screen" required="true"/>
+
+  <node pkg="pf_localization" type="pf_localization" name="pf_localization" output="screen" required="true" />
+  
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen" required="true" />
+
+  <node pkg="rviz" type="rviz" name="rviz" output="screen" required="true" args="-d $(find pf_localization)/../config/pf_conf.rviz"/>
+
+</launch>
+
